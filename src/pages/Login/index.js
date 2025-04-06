@@ -1,21 +1,32 @@
-import React, { useLayoutEffect } from 'react';
-import { View, Text, StyleSheet, Button } from "react-native";
+import React from 'react';
+import { View, Button, StyleSheet } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
-export default function Messages(){
+export default function Login() {
     const navigation = useNavigation();
 
-    return(
-        <View>
-            <Text> entrar </Text>
+    return (
+        <View style={styles.container}>
+            <Button
+                title="Entrar"
+                onPress={() => navigation.navigate('Home')} // Vai para a tabRoutes
+            />
+
+            <View style={{ marginTop: 10 }} />
+
+            <Button
+                title="Ir para Cadastro"
+                onPress={() => navigation.navigate('SignUp')}
+            />
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1, 
-        justifyContent:'center',
-        alignItems: 'center'
+    container: {
+        flex: 1, 
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20
     }
-})
+});
