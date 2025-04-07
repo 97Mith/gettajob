@@ -14,6 +14,7 @@ export default function Login() {
 
       <InputField icon="user" placeholder="Usuário" />
       <InputField icon="lock" placeholder="Senha" secureTextEntry />
+      
 
       <TouchableOpacity
         style={styles.button}
@@ -36,7 +37,7 @@ export default function Login() {
         <SocialButton imageSource={require("../../assets/facebook.png")} onPress={() => navigation.navigate("Home")} />
       </View>
 
-      <TouchableOpacity onPress={() => alert("Funcionalidade futura 😉")}>
+      <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
         <Text style={styles.forgotPassword}>
           Esqueceu a Senha? <Text style={styles.link}>Clique aqui</Text>
         </Text>

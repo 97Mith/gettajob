@@ -20,7 +20,11 @@ export default function StackRoutes(){
             />
             <Stack.Screen
                 name="Home"
-                component={Routes} // TabNavigation
+                component={Routes} 
+            />
+            <Stack.Screen
+                name="ForgotPassword"
+                component={Routes}
             />
         </Stack.Navigator>
     )
