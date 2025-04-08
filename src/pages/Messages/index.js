@@ -7,7 +7,6 @@ export default function Messages(){
 
     return(
         <View>
-            <Text> mensagens </Text>
         </View>
     )
 }

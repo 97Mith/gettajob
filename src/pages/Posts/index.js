@@ -7,7 +7,6 @@ export default function Posts(){
 
     return(
         <View>
-            <Text> Posts </Text>
         </View>
     )
 }

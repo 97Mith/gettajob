@@ -15,7 +15,7 @@ export default function Routes() {
   return(
       <Tab.Navigator
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
           tabBarHideOnKeyboard: true,
           tabBarShowLabel: false,
           tabBarActiceTintColor: '##FFF',
@@ -25,7 +25,7 @@ export default function Routes() {
         }}
       >
         <Tab.Screen
-          name="Feed"
+          name="Getta Job"
           component={Feed}
           options={{
             tabBarIcon: ({color , size}) => {
@@ -38,6 +38,7 @@ export default function Routes() {
           name="Pesquisar"
           component={Search}
           options={{
+            headerShown: false,
             tabBarIcon: ({color, size}) => {
               return <Feather name="search" color={color} size={size}/>
             }
@@ -45,9 +46,10 @@ export default function Routes() {
           />
         
         <Tab.Screen
-          name="Postar"
+          name="Post"
           component={Posts}
           options={{
+            headerShown: false,
             tabBarIcon: ({color, size}) => {
               return <Feather name="plus-circle" color={color} size={size}/>
             }
@@ -58,6 +60,7 @@ export default function Routes() {
           name="Mensagens"
           component={Messages}
           options={{
+            headerShown: false,
             tabBarIcon: ({color, size}) => {
               return <Feather name="message-square" color={color} size={size}/>
             }
@@ -65,10 +68,10 @@ export default function Routes() {
           />
 
         <Tab.Screen
-          name="Perfil"
+          name="..."
           component={Profile}
           options={{
-            tabBarIcon: ({color, size}) => {
+            tabBarIcon: ({color, size=0}) => {
               return <Feather name="user" color={color} size={size}/>
             }
           }}

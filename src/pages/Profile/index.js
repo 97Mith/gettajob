@@ -4,6 +4,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import styles from "../../styles/ProfileStyles";
 import FeedbackTab from "../Feedbacks";
+import GalleryTab from "../Gallery";
+
 
 
 LocaleConfig.locales['pt-br'] = {
@@ -25,11 +27,13 @@ LocaleConfig.locales['pt-br'] = {
 LocaleConfig.defaultLocale = 'pt-br';
 
 export default function Profile() {
-  const [activeTab, setActiveTab] = useState("posts");
+  const [activeTab, setActiveTab] = useState("gallery");
+
 
   return (
     <View style={styles.container}>
       <Header />
+      
       <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
         <View style={styles.profileInfo}>
           <Image source={require("../../assets/imgPerfil.png")} style={styles.avatar} />
@@ -59,9 +63,10 @@ export default function Profile() {
         </View>
 
         <View style={styles.tabSelector}>
-          <TouchableOpacity onPress={() => setActiveTab("posts")} style={activeTab === "posts" ? styles.activeTab : styles.inactiveTab}>
-            <FontAwesome name="file" size={24} />
-          </TouchableOpacity>
+        <TouchableOpacity onPress={() => setActiveTab("gallery")} style={activeTab === "gallery" ? styles.activeTab : styles.inactiveTab}>
+          <FontAwesome name="image" size={24} />
+        </TouchableOpacity>
+
           <TouchableOpacity onPress={() => setActiveTab("feedbacks")} style={activeTab === "feedbacks" ? styles.activeTab : styles.inactiveTab}>
             <FontAwesome name="gavel" size={24} />
           </TouchableOpacity>
@@ -71,7 +76,7 @@ export default function Profile() {
         </View>
 
 
-        {activeTab === "posts" && <PostsTab />}
+        {activeTab === "gallery" && <GalleryTab />}
         {activeTab === "feedbacks" && <FeedbackTab />}
         {activeTab === "calendar" && <CalendarTab />}
 
@@ -87,17 +92,6 @@ const Header = () => (
   </View>
 );
 
-const PostsTab = () => (
-  <View style={styles.tabContent}>
-    <Text>Lista de fotos e publicações (em construção)</Text>
-  </View>
-);
-
-const ServicesTab = () => (
-  <View style={styles.tabContent}>
-    <Text>Histórico de serviços e avaliações (em construção)</Text>
-  </View>
-);
 
 const CalendarTab = () => {
   const [selected, setSelected] = useState('');
