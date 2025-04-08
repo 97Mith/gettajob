@@ -1,117 +1,137 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-const feedbacks = [
+const feedbacksData = [
   {
-    id: "1",
-    service: "Serviço de Instalação de Chuveiro",
-    provider: "serjo.mecanica",
-    status: "Em andamento...",
+    id: 1,
+    title: "Serviço de Instalação de Chuveiro",
+    status: "Em andamento",
     rating: 0,
-    comment: "",
+    user: "serjo.mecanica",
+    avatar: require("../../assets/usuario1.png"),
+    comment: ""
   },
   {
-    id: "2",
-    service: "Serviço de forramento",
-    provider: "serjo.mecanica",
+    id: 2,
+    title: "Serviço de forramento",
     status: "Concluído ontem às 20:21",
     rating: 5,
-    comment: "",
+    user: "serjo.mecanica",
+    avatar: require("../../assets/usuario1.png"),
+    comment: "O cara é fera demais!"
   },
   {
-    id: "3",
-    service: "Serviço de pintura domiciliar",
-    provider: "melissa.nurse",
+    id: 3,
+    title: "Serviço de pintura domiciliar",
     status: "Concluído 29/03 às 10:55",
     rating: 5,
-    comment: "",
+    user: "melissa.nurse",
+    avatar: require("../../assets/usuario2.png"),
+    comment: "-"
   },
   {
-    id: "4",
-    service: "Serviço de Troca de pneu",
-    provider: "melissa.nurse",
+    id: 4,
+    title: "Serviço de Troca de pneu",
     status: "Concluído 28/03 às 12:05",
     rating: 5,
-    comment: "Solicitado o serviço, concluiu rápido, muito atencioso recomendo este profissional!",
-  },
+    user: "melissa.nurse",
+    avatar: require("../../assets/usuario2.png"),
+    comment: "Solicitado o serviço, concluiu rápido, muito atencioso recomendo este profissional!"
+  }
 ];
 
-export default function FeedbackTab() {
+export default function FeedbacksTab() {
   const [expandedId, setExpandedId] = useState(null);
 
-  const renderStars = (count) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      stars.push(
-        <FontAwesome
-          key={i}
-          name={i <= count ? "star" : "star-o"}
-          color="#FFD700"
-          size={16}
-          style={{ marginRight: 2 }}
-        />
-      );
-    }
-    return <View style={{ flexDirection: "row", marginVertical: 4 }}>{stars}</View>;
-  };
-
-  const FeedbackItem = ({ item }) => {
-    const isExpanded = item.id === expandedId;
-
-    return (
-      <TouchableOpacity
-        onPress={() => setExpandedId(isExpanded ? null : item.id)}
-        style={styles.card}
-      >
-        <Text style={styles.serviceTitle}>{item.service}</Text>
-        {renderStars(item.rating)}
-        <Text style={styles.providerName}>{item.provider}</Text>
-        <Text style={styles.status}>{item.status}</Text>
-        {isExpanded && item.comment !== "" && (
-          <Text style={styles.comment}>{item.comment}</Text>
-        )}
-      </TouchableOpacity>
-    );
+  const toggleExpand = (id) => {
+    setExpandedId(expandedId === id ? null : id);
   };
 
   return (
-    <View style={{ padding: 16 }}>
-      <FlatList
-        data={feedbacks}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <FeedbackItem item={item} />}
-        contentContainerStyle={{ paddingBottom: 80 }}
-      />
+    <View style={styles.container}>
+      {feedbacksData.map((feedback) => {
+        const isExpanded = feedback.id === expandedId;
+        const isConcluded = feedback.status.toLowerCase().includes("concluído");
+        const isInProgress = feedback.status.toLowerCase().includes("andamento");
+
+        return (
+          <TouchableOpacity
+            key={feedback.id}
+            style={[styles.card, isInProgress ? styles.inProgress : isConcluded ? styles.concluded : null]}
+            onPress={() => toggleExpand(feedback.id)}
+            activeOpacity={0.8}
+          >
+            <View style={styles.cardHeader}>
+              <Image source={feedback.avatar} style={styles.avatar} />
+              <View style={{ flex: 1 }}>
+                <Text style={styles.title}>{feedback.title}</Text>
+                <View style={styles.starRow}>
+                  {[...Array(5)].map((_, i) => (
+                    <FontAwesome
+                      key={i}
+                      name={i < feedback.rating ? "star" : "star-o"}
+                      size={14}
+                      color="#FFD700"
+                      style={{ marginRight: 2 }}
+                    />
+                  ))}
+                </View>
+                <Text style={styles.status}>{feedback.status}</Text>
+              </View>
+              {isConcluded && <FontAwesome name="check-circle" size={24} color="#4CAF50" />}
+            </View>
+            {isExpanded && feedback.comment && (
+              <Text style={styles.comment}>{feedback.comment}</Text>
+            )}
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
   card: {
-    backgroundColor: "#4e4e4e",
-    borderRadius: 12,
+    backgroundColor: "#f2f2f2",
     padding: 12,
-    marginBottom: 12,
+    borderRadius: 12,
+    marginBottom: 10,
   },
-  serviceTitle: {
-    fontSize: 16,
+  cardHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  title: {
     fontWeight: "bold",
-    color: "#fff",
-    marginBottom: 4,
-  },
-  providerName: {
-    color: "#ccc",
     fontSize: 14,
   },
   status: {
-    color: "#90ee90",
-    fontSize: 13,
-    marginTop: 4,
+    fontSize: 12,
+    color: "#555",
   },
   comment: {
-    color: "#eee",
-    fontSize: 14,
     marginTop: 8,
+    fontStyle: "italic",
+    color: "#333",
+  },
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 10,
+  },
+  starRow: {
+    flexDirection: "row",
+    marginVertical: 2,
+  },
+  inProgress: {
+    backgroundColor: "#e0f7fa",
+  },
+  concluded: {
+    backgroundColor: "#e8f5e9",
   },
 });
