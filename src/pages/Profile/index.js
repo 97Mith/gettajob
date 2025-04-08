@@ -3,6 +3,8 @@ import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import styles from "../../styles/ProfileStyles";
+import FeedbackTab from "../Feedbacks";
+
 
 LocaleConfig.locales['pt-br'] = {
   monthNames: [
@@ -60,7 +62,7 @@ export default function Profile() {
           <TouchableOpacity onPress={() => setActiveTab("posts")} style={activeTab === "posts" ? styles.activeTab : styles.inactiveTab}>
             <FontAwesome name="file" size={24} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setActiveTab("services")} style={activeTab === "services" ? styles.activeTab : styles.inactiveTab}>
+          <TouchableOpacity onPress={() => setActiveTab("feedbacks")} style={activeTab === "feedbacks" ? styles.activeTab : styles.inactiveTab}>
             <FontAwesome name="gavel" size={24} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setActiveTab("calendar")} style={activeTab === "calendar" ? styles.activeTab : styles.inactiveTab}>
@@ -68,9 +70,11 @@ export default function Profile() {
           </TouchableOpacity>
         </View>
 
+
         {activeTab === "posts" && <PostsTab />}
-        {activeTab === "services" && <ServicesTab />}
+        {activeTab === "feedbacks" && <FeedbackTab />}
         {activeTab === "calendar" && <CalendarTab />}
+
       </ScrollView>
     </View>
   );
