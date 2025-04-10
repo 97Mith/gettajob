@@ -54,4 +54,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  timestamp: {
+    fontSize: 12,
+    color: '#555',
+    marginTop: 4,
+    textAlign: 'right',
+  },
+
 });

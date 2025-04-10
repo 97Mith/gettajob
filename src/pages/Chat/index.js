@@ -2,8 +2,7 @@ import React, { useLayoutEffect, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList, Image } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import styles from '../../styles/chatStyles';
-
-import { Ionicons } from '@expo/vector-icons'; // Ícone de enviar
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Chat() {
   const route = useRoute();
@@ -11,8 +10,8 @@ export default function Chat() {
   const { userName, userImage } = route.params;
 
   const [messages, setMessages] = useState([
-    { id: '1', from: 'them', text: 'Oii, tá disponível hoje??' },
-    { id: '2', from: 'me', text: 'Hoje não 😕' },
+    { id: '1', from: 'them', text: 'Oii, tá disponível hoje??', timestamp: '14:05' },
+    { id: '2', from: 'me', text: 'Hoje não 😕', timestamp: '14:07' },
   ]);
 
   const [input, setInput] = useState('');
@@ -37,6 +36,11 @@ export default function Chat() {
     });
   }, [navigation, userName]);
 
+  const getCurrentTime = () => {
+    const now = new Date();
+    return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  };
+
   const sendMessage = () => {
     if (input.trim() === '') return;
 
@@ -44,6 +48,7 @@ export default function Chat() {
       id: String(messages.length + 1),
       from: 'me',
       text: input.trim(),
+      timestamp: getCurrentTime(),
     };
 
     setMessages([...messages, newMessage]);
@@ -58,6 +63,7 @@ export default function Chat() {
       ]}
     >
       <Text style={styles.messageText}>{item.text}</Text>
+      <Text style={styles.timestamp}>{item.timestamp}</Text>
     </View>
   );
 
