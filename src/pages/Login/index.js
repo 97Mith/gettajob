@@ -4,9 +4,12 @@ import { useNavigation } from "@react-navigation/native";
 import InputField from "../../components/InputField";
 import SocialButton from "../../components/SocialButton";
 import styles from "../../styles/loginStyles";
+import RememberMeCheck from "../../components/RememberMeCheckBox";
+
 
 export default function Login() {
   const navigation = useNavigation();
+  //const RememberMeCheckBox = rememberMeCheckBox();
 
   return (
     <View style={styles.container}>
@@ -14,6 +17,7 @@ export default function Login() {
 
       <InputField icon="user" placeholder="Usuário" />
       <InputField icon="lock" placeholder="Senha" secureTextEntry />
+      <RememberMeCheck />
       
 
       <TouchableOpacity
@@ -45,3 +49,5 @@ export default function Login() {
     </View>
   );
 }
+
+

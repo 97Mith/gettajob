@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
-import InputField from "../components/InputField";
-import styles from "../styles/loginStyles"; // Reutilizando os estilos do login
+import InputField from "../../components/InputField";
+import styles from "../../styles/loginStyles";
 
 const ForgotPassword = ({ navigation }) => {
   const [email, setEmail] = useState("");

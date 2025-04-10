@@ -5,6 +5,7 @@ import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Routes from './index';
 import Chat from '../pages/Chat';
+import ForgotPassword from '../pages/ForgotPassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +26,7 @@ export default function StackRoutes(){
             />
             <Stack.Screen
                 name="ForgotPassword"
-                component={Routes}
+                component={ForgotPassword}
             />
             <Stack.Screen 
                 name="Chat" 
