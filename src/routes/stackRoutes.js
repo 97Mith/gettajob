@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Routes from './index';
+import Chat from '../pages/Chat';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,10 @@ export default function StackRoutes(){
             <Stack.Screen
                 name="ForgotPassword"
                 component={Routes}
+            />
+            <Stack.Screen 
+                name="Chat" 
+                component={Chat} 
             />
         </Stack.Navigator>
     )
