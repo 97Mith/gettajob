@@ -5,6 +5,7 @@ import { Calendar, LocaleConfig } from "react-native-calendars";
 import styles from "../../styles/ProfileStyles";
 import FeedbackTab from "../Feedbacks";
 import GalleryTab from "../Gallery";
+import { useNavigation } from "@react-navigation/native";
 
 LocaleConfig.locales["pt-br"] = {
   monthNames: [
@@ -147,12 +148,18 @@ export default function Profile() {
   );
 }
 
-const Header = () => (
-  <View style={styles.header}>
-    <Text style={styles.logo}>Getta Job</Text>
-    <FontAwesome name="bars" size={24} color="black" />
-  </View>
-);
+const Header = () => {
+  const navigation = useNavigation();
+
+  return (
+    <View style={styles.header}>
+      <Text style={styles.logo}>Getta Job</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
+        <FontAwesome name="bars" size={24} color="black" />
+      </TouchableOpacity>
+    </View>
+  );
+}
 
 const CalendarTab = () => {
   const [selected, setSelected] = useState("");
@@ -167,7 +174,7 @@ const CalendarTab = () => {
           "2025-04-15": { marked: true, dotColor: "red" },
         }}
         theme={{
-          selectedDayBackgroundColor: "#8B008B",
+          selectedDayBackgroundColor: "#FFF",
           todayTextColor: "#8B008B",
           arrowColor: "#8B008B",
         }}

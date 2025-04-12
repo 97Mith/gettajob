@@ -7,6 +7,7 @@ import Routes from './index';
 import Chat from '../pages/Chat';
 import ForgotPassword from '../pages/ForgotPassword';
 import PostReq from '../pages/PostReq';
+import MenuScreen from '../pages/MenuScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,10 @@ export default function StackRoutes(){
             <Stack.Screen 
                 name="PostReq" 
                 component={PostReq}
+            />
+            <Stack.Screen 
+                name="Menu" 
+                component={MenuScreen} 
             />
         </Stack.Navigator>
     )
