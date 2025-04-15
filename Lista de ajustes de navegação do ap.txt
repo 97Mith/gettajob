@@ -6,9 +6,11 @@ OK ~~3 - Criar o 'pesquisar'~~
 OK ~~4 - colocar dentro de uma flatlist as mensagens~~
 OK ~~5 - inserir os horários das mensagens no chat~~
 OK ~~6 - criar draw page na página profile~~
-7 - navegar para post individual na gallery
+OK ~~7 - navegar para post individual na gallery~~
+
 8 - TODO Calendário interativo, tem que criar um calendário próprio nosso ,mas isso vai ser complicado demais vou deixar por enquanto.
-9 - navegação para o perfil pessoal de outros usuários.
+
+OK ~~9 - navegação para o perfil pessoal de outros usuários.~~
 10 - criar sininho de notificações
 11 - criar tela de solicitação de serviço, incluir um pick com tipo de serviço, um campo para inserir a data e horário que está disponível para receber o serviço
 12 - adicionar um botão de voltar na tela cadastro
@@ -19,3 +21,5 @@ OK ~~6 - criar draw page na página profile~~
 17 - dar um marge top no projeto todo
 18 - Inserir horário nos posts
 19 - Inserir interações no post (comentários e likes)
+20 - abrir a foto do perfil ao clicar na foto quando estiver no perfil
+21 - criar notificações fake do sininho

@@ -7,7 +7,10 @@ export default function NewPost() {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.buttonService}>
+            <TouchableOpacity
+                style={styles.buttonService}
+                onPress={() => navigation.navigate("NovaSolicitacao")}
+            >
                 <Text style={styles.buttonText}>Solicitar serviço</Text>
             </TouchableOpacity>
 

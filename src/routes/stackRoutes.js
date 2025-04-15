@@ -10,6 +10,7 @@ import PostReq from '../pages/PostReq';
 import MenuScreen from '../pages/MenuScreen';
 import Post from '../pages/Post';
 import OthersProfile from '../pages/OthersProfile';
+import NewPostReq from "../pages/NewPostReq";
 
 
 const Stack = createNativeStackNavigator();
@@ -53,6 +54,11 @@ export default function StackRoutes(){
                 name="OthersProfile" 
                 component={OthersProfile} 
             />
+            <Stack.Screen
+                name="NovaSolicitacao"
+                component={NewPostReq}
+            />
+
 
 
         </Stack.Navigator>

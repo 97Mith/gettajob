@@ -154,12 +154,18 @@ const Header = () => {
   return (
     <View style={styles.header}>
       <Text style={styles.logo}>Getta Job</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
-        <FontAwesome name="bars" size={24} color="black" />
-      </TouchableOpacity>
+      <View style={{ flexDirection: "row", gap: 16 }}>
+        <TouchableOpacity onPress={() => navigation.navigate("Notificacoes")}>
+          <FontAwesome name="bell" size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
+          <FontAwesome name="bars" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
-}
+};
+
 
 const CalendarTab = () => {
   const [selected, setSelected] = useState("");
