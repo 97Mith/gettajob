@@ -32,13 +32,14 @@ export default function Search() {
   };
 
   const renderItem = ({ item }) => (
-    <View style={styles.card}>
+    <TouchableOpacity onPress={() => navigation.navigate('OthersProfile')} style={styles.card}>
       <Image source={{ uri: item.avatar }} style={styles.avatar} />
       <View style={styles.userInfo}>
         <Text style={styles.name}>{item.name} <Text style={styles.nickname}>{item.nickname}</Text></Text>
         <Text style={styles.rating}>⭐ {item.rating}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
+
   );
 
   return (

@@ -9,6 +9,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 import PostReq from '../pages/PostReq';
 import MenuScreen from '../pages/MenuScreen';
 import Post from '../pages/Post';
+import OthersProfile from '../pages/OthersProfile';
 
 
 const Stack = createNativeStackNavigator();
@@ -48,6 +49,11 @@ export default function StackRoutes(){
                 name="Post" 
                 component={Post}
             />
+            <Stack.Screen 
+                name="OthersProfile" 
+                component={OthersProfile} 
+            />
+
 
         </Stack.Navigator>
     )

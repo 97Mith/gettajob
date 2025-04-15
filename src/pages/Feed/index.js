@@ -103,10 +103,13 @@ export default function Feed() {
     return (
       <TouchableOpacity onPress={handlePress}>
         <View style={styles.postContainer}>
-          <View style={styles.userInfo}>
-            <Image source={{ uri: item.user.avatar }} style={styles.avatar} />
+        <View style={styles.userInfo}>
+          <Image source={{ uri: item.user.avatar }} style={styles.avatar} />
+          <TouchableOpacity onPress={() => navigation.navigate('OthersProfile')}>
             <Text style={styles.username}>{item.user.name}</Text>
-          </View>
+          </TouchableOpacity>
+        </View>
+
           
           <View style={styles.imageWrapper}>
             <Image source={{ uri: item.image }} style={styles.postImage} />
