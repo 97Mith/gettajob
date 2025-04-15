@@ -1,0 +1,20 @@
+Lista de ajustes de navegação do aplicativo GettaJob
+
+OK ~~1 - arrumar o "esqueceu a senha? clique aqui", acrescentar uma checkbox "lembrar de mim"~~
+OK ~~2 - Clicar e ir para detalhes do post no feed~~
+OK ~~3 - Criar o 'pesquisar'~~
+OK ~~4 - colocar dentro de uma flatlist as mensagens~~
+OK ~~5 - inserir os horários das mensagens no chat~~
+OK ~~6 - criar draw page na página profile~~
+7 - navegar para post individual na gallery
+8 - TODO Calendário interativo, tem que criar um calendário próprio nosso ,mas isso vai ser complicado demais vou deixar por enquanto.
+9 - navegação para o perfil pessoal de outros usuários.
+10 - criar sininho de notificações
+11 - criar tela de solicitação de serviço, incluir um pick com tipo de serviço, um campo para inserir a data e horário que está disponível para receber o serviço
+12 - adicionar um botão de voltar na tela cadastro
+13 - no Login, substituir a Label do título pela logo
+14 - Navegar para chat com requisitor do serviço ao clicar em "inscrever-se no serviço" deve mandar uma mensagem "Olá, fulano, me inscrevo para requisição do seu serviço" essa mensagem deve ter características diferentes, para o tomador aceitar ou não o serviço
+15 - criar lista de amigos
+16 - colocar função de compartilhar serviço com amigos
+17 - dar um marge top no projeto todo
+18 - Inserir horário nos posts
