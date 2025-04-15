@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
-export default function Posts() {
+export default function NewPost() {
     const navigation = useNavigation();
 
     return (

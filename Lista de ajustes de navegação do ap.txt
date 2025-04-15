@@ -18,3 +18,4 @@ OK ~~6 - criar draw page na página profile~~
 16 - colocar função de compartilhar serviço com amigos
 17 - dar um marge top no projeto todo
 18 - Inserir horário nos posts
+19 - Inserir interações no post (comentários e likes)

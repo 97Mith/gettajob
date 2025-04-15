@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Feed from '../pages/Feed';
 import Messages from '../pages/Messages';
-import Posts from '../pages/Posts';
+import NewPost from '../pages/NewPost';
 import Profile from '../pages/Profile';
 import Search from '../pages/Search';
 
@@ -46,8 +46,8 @@ export default function Routes() {
           />
         
         <Tab.Screen
-          name="Post"
-          component={Posts}
+          name="NewPost"
+          component={NewPost}
           options={{
             headerShown: false,
             tabBarIcon: ({color, size}) => {

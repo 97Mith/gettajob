@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Image, FlatList, StyleSheet, Dimensions } from "react-native";
+import { View, Image, FlatList, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const mockImages = [
   require("../../assets/servico1.png"),
@@ -11,16 +12,24 @@ const mockImages = [
   require("../../assets/servico7.png"),
 ];
 
-const imageSize = Dimensions.get("window").width / 3; // 3 colunas
+const imageSize = Dimensions.get("window").width / 3;
 
 const GalleryTab = () => {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate("Post"); // Vai para a tela de post fictício
+  };
+
   return (
     <FlatList
       data={mockImages}
       keyExtractor={(_, index) => index.toString()}
       numColumns={3}
       renderItem={({ item }) => (
-        <Image source={item} style={styles.imageThumbnail} />
+        <TouchableOpacity onPress={handlePress}>
+          <Image source={item} style={styles.imageThumbnail} />
+        </TouchableOpacity>
       )}
       contentContainerStyle={styles.galleryContainer}
       showsVerticalScrollIndicator={false}
