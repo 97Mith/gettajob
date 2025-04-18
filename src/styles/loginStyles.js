@@ -44,4 +44,11 @@ export default StyleSheet.create({
     textDecorationLine: "underline",
     fontStyle: "italic",
   },
+  logo: {
+    width: 180,
+    height: 180,
+    resizeMode: "contain",
+    marginBottom: 30,
+  },
+  
 });

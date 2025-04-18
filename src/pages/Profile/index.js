@@ -52,6 +52,7 @@ LocaleConfig.defaultLocale = "pt-br";
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("gallery");
+  const navigation = useNavigation();
 
   const renderContent = () => {
     if (activeTab === "gallery") return <GalleryTab />;
@@ -74,9 +75,14 @@ export default function Profile() {
                 style={styles.avatar}
               />
               <Text style={styles.nickname}>Nickname da Silva</Text>
-              <Text style={styles.stats}>
-                17 posts | 144 serviços | 34 conexões
-              </Text>
+              <View style={{ flexDirection: 'row', gap: 6 }}>
+                <Text style={styles.stats}>17 posts | 144 serviços |</Text>
+                <TouchableOpacity onPress={() => navigation.navigate("Connections")}>
+                  <Text style={[styles.stats, { textDecorationLine: 'underline', color: '#c800ff' }]}>
+                    34 conexões
+                  </Text>
+                </TouchableOpacity>
+              </View>
 
               <View style={styles.tagsContainer}>
                 <Text style={styles.tag}>🔧 Carpinteiro</Text>
@@ -166,7 +172,6 @@ const Header = () => {
   );
 };
 
-
 const CalendarTab = () => {
   const [selected, setSelected] = useState("");
 
@@ -180,7 +185,7 @@ const CalendarTab = () => {
           "2025-04-15": { marked: true, dotColor: "red" },
         }}
         theme={{
-          selectedDayBackgroundColor: "#FFF",
+          selectedDayBackgroundColor: "#8B008B",
           todayTextColor: "#8B008B",
           arrowColor: "#8B008B",
         }}

@@ -11,11 +11,11 @@ OK ~~7 - navegar para post individual na gallery~~
 8 - TODO Calendário interativo, tem que criar um calendário próprio nosso ,mas isso vai ser complicado demais vou deixar por enquanto.
 
 OK ~~9 - navegação para o perfil pessoal de outros usuários.~~
-10 - criar sininho de notificações
-11 - criar tela de solicitação de serviço, incluir um pick com tipo de serviço, um campo para inserir a data e horário que está disponível para receber o serviço
-12 - adicionar um botão de voltar na tela cadastro
-13 - no Login, substituir a Label do título pela logo
-14 - Navegar para chat com requisitor do serviço ao clicar em "inscrever-se no serviço" deve mandar uma mensagem "Olá, fulano, me inscrevo para requisição do seu serviço" essa mensagem deve ter características diferentes, para o tomador aceitar ou não o serviço
+OK ~~10 - criar sininho de notificações~~
+OK ~~11 - criar tela de solicitação de serviço, incluir um pick com tipo de serviço, um campo para inserir a data e horário que está disponível para receber o serviço~~
+OK ~~12 - adicionar um botão de voltar e senha mais confirmação na tela cadastro 
+OK ~~13 - no Login, substituir a Label do título pela logo
+14 - Navegar para chat com requisitor do serviço ao clicar em "inscrever-se no serviço" deve mandar uma mensagem "Olá, fulano, me inscrevo para requisição do seu serviço" essa mensagem deve ter características diferentes, para o tomador aceitar ou não o serviço e adicionar a tela de req de serviço o nome de usuário em cima
 15 - criar lista de amigos
 16 - colocar função de compartilhar serviço com amigos
 17 - dar um marge top no projeto todo
@@ -23,3 +23,4 @@ OK ~~9 - navegação para o perfil pessoal de outros usuários.~~
 19 - Inserir interações no post (comentários e likes)
 20 - abrir a foto do perfil ao clicar na foto quando estiver no perfil
 21 - criar notificações fake do sininho
+22 - clicar em compartilhar ele abre a tela de mensagens

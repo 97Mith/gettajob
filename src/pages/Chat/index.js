@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList, Image } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import styles from '../../styles/chatStyles';
@@ -15,6 +15,19 @@ export default function Chat() {
   ]);
 
   const [input, setInput] = useState('');
+  const initialMessage = route.params?.initialMessage;
+
+  useEffect(() => {
+    if (initialMessage) {
+      const newMessage = {
+        id: String(messages.length + 1),
+        from: 'me',
+        text: initialMessage,
+        timestamp: getCurrentTime(),
+      };
+      setMessages((prev) => [...prev, newMessage]);
+    }
+  }, [initialMessage]);
 
   useLayoutEffect(() => {
     navigation.setOptions({

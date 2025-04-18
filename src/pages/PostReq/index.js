@@ -1,109 +1,46 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import React from "react";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import styles from "../../styles/postReqStyles";
 
-export default function PostReq({ route }) {
-  const { requisition } = route.params;
+export default function PostReq() {
   const navigation = useNavigation();
 
-  const getIconForTag = (tag) => {
-    switch (tag.toLowerCase()) {
-      case 'mecânico':
-        return <FontAwesome5 name="tools" size={20} color="#000" />;
-      case 'eletricista':
-        return <FontAwesome5 name="bolt" size={20} color="#000" />;
-      case 'encanador':
-        return <FontAwesome5 name="water" size={20} color="#000" />;
-      default:
-        return <FontAwesome5 name="briefcase" size={20} color="#000" />;
-    }
+  const handleSubscribe = () => {
+    navigation.navigate("Chat", {
+      userName: "joao_trabalhador",
+      userImage: "https://randomuser.me/api/portraits/men/32.jpg",
+      initialMessage: "Olá, gostaria de me inscrever para o serviço!",
+    });
   };
 
   return (
     <View style={styles.container}>
-      {/* Botão de voltar */}
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-        <Ionicons name="arrow-back" size={24} color="#000" />
-      </TouchableOpacity>
-
-      <Text style={styles.title}>Requisição de serviço</Text>
-
-      <View style={styles.tagContainer}>
-        {getIconForTag(requisition.tag)}
-        <Text style={styles.tag}>  {requisition.tag}</Text>
+      {/* Cabeçalho do usuário */}
+      <View style={styles.profileHeader}>
+        <Image
+          source={{ uri: "https://randomuser.me/api/portraits/men/32.jpg" }}
+          style={styles.profileImage}
+        />
+        <Text style={styles.profileName}>@joao_trabalhador</Text>
       </View>
 
-      <Text style={styles.label}>Descrição:</Text>
-      <Text style={styles.description}>{requisition.description}</Text>
-
-      <Text style={styles.label}>Valor:</Text>
-      <Text style={styles.price}>R$ {requisition.price.toFixed(2)}</Text>
+      <Text style={styles.title}>Preciso de um Pintor!</Text>
+      <Text style={styles.tag}>#Pintor</Text>
+      <Text style={styles.description}>
+        Procuro pintor para pintar um apartamento de 3 quartos. Forneço o material. 
+        Preferência para este fim de semana.
+      </Text>
+      <Text style={styles.price}>R$ 700,00</Text>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Inscrever-se no serviço</Text>
+        <TouchableOpacity style={styles.shareButton}>
+          <Text style={styles.shareText}>Compartilhar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Compartilhar serviço</Text>
+        <TouchableOpacity style={styles.subscribeButton} onPress={handleSubscribe}>
+          <Text style={styles.subscribeText}>Inscrever-se no serviço</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#eee',
-  },
-  backButton: {
-    marginBottom: 10,
-    alignSelf: 'flex-start',
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 12,
-  },
-  tagContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#6ddce8',
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-    alignSelf: 'flex-start',
-    marginBottom: 15,
-    alignItems: 'center',
-  },
-  tag: {
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  label: {
-    fontWeight: '600',
-    marginTop: 10,
-  },
-  description: {
-    marginBottom: 10,
-  },
-  price: {
-    marginBottom: 20,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  button: {
-    backgroundColor: '#d5f169',
-    padding: 10,
-    borderRadius: 10,
-    width: '48%',
-    alignItems: 'center',
-  },
-  buttonText: {
-    fontWeight: 'bold',
-    color: '#000',
-  },
-});

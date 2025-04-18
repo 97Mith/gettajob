@@ -11,6 +11,7 @@ import MenuScreen from '../pages/MenuScreen';
 import Post from '../pages/Post';
 import OthersProfile from '../pages/OthersProfile';
 import NewPostReq from "../pages/NewPostReq";
+import Connections from "../pages/Connections";
 
 
 const Stack = createNativeStackNavigator();
@@ -57,6 +58,10 @@ export default function StackRoutes(){
             <Stack.Screen
                 name="NovaSolicitacao"
                 component={NewPostReq}
+            />
+            <Stack.Screen 
+                name="Connections" 
+                component={Connections}
             />
 
 
