@@ -70,10 +70,12 @@ export default function Profile() {
         renderItem={() => (
           <>
             <View style={styles.profileInfo}>
+            <TouchableOpacity onPress={() => navigation.navigate("FullImage", { imageUri: Image.resolveAssetSource(require("../../assets/imgPerfil.png")).uri })}>
               <Image
                 source={require("../../assets/imgPerfil.png")}
                 style={styles.avatar}
               />
+            </TouchableOpacity>
               <Text style={styles.nickname}>Nickname da Silva</Text>
               <View style={{ flexDirection: 'row', gap: 6 }}>
                 <Text style={styles.stats}>17 posts | 144 serviços |</Text>

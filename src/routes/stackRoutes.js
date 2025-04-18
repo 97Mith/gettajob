@@ -12,6 +12,7 @@ import Post from '../pages/Post';
 import OthersProfile from '../pages/OthersProfile';
 import NewPostReq from "../pages/NewPostReq";
 import Connections from "../pages/Connections";
+import FullImage from "../pages/FullImage";
 
 
 const Stack = createNativeStackNavigator();
@@ -63,7 +64,11 @@ export default function StackRoutes(){
                 name="Connections" 
                 component={Connections}
             />
-
+            <Stack.Screen 
+                name="FullImage" 
+                component={FullImage}
+                options={{ headerShown: false }}
+            />
 
 
         </Stack.Navigator>

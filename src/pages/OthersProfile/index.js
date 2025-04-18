@@ -52,7 +52,7 @@ LocaleConfig.defaultLocale = "pt-br";
 
 export default function OthersProfile() {
   const [activeTab, setActiveTab] = useState("gallery");
-
+  const navigation = useNavigation();
   const renderContent = () => {
     if (activeTab === "gallery") return <GalleryTab />;
     if (activeTab === "feedbacks") return <FeedbackTab />;
@@ -69,14 +69,22 @@ export default function OthersProfile() {
         renderItem={() => (
           <>
             <View style={styles.profileInfo}>
+            <TouchableOpacity onPress={() => navigation.navigate("FullImage", { imageUri: Image.resolveAssetSource(require("../../assets/imgPerfil2.png")).uri })}>
               <Image
                 source={require("../../assets/imgPerfil2.png")}
                 style={styles.avatar}
               />
+            </TouchableOpacity>
               <Text style={styles.nickname}>Carinha da Conseição</Text>
-              <Text style={styles.stats}>
-                7 posts | 4 serviços | 2 conexões
-              </Text>
+              <View style={{ flexDirection: 'row', gap: 6 }}>
+                              <Text style={styles.stats}>17 posts | 144 serviços |</Text>
+                              <TouchableOpacity onPress={() => navigation.navigate("Connections")}>
+                                <Text style={[styles.stats, { textDecorationLine: 'underline', color: '#c800ff' }]}>
+                                  6 conexões
+                                </Text>
+                              </TouchableOpacity>
+                            </View>
+              
 
               <View style={styles.tagsContainer}>
                 <Text style={styles.tag}>🔧 Carpinteiro</Text>
