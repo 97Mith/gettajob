@@ -34,9 +34,13 @@ export default function PostReq() {
       <Text style={styles.price}>R$ 700,00</Text>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.shareButton}>
-          <Text style={styles.shareText}>Compartilhar</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.shareButton}
+        onPress={() => navigation.navigate("Connections", { shareMode: true })}
+      >
+        <Text style={styles.shareText}>Compartilhar</Text>
+      </TouchableOpacity>
+
         <TouchableOpacity style={styles.subscribeButton} onPress={handleSubscribe}>
           <Text style={styles.subscribeText}>Inscrever-se no serviço</Text>
         </TouchableOpacity>

@@ -9,7 +9,6 @@ export default function MenuScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Botão de Voltar */}
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Feather name="arrow-left" size={24} color="#000" />
         <Text style={styles.backText}>Voltar</Text>
