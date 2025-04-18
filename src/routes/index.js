@@ -71,6 +71,7 @@ export default function Routes() {
           name="..."
           component={Profile}
           options={{
+            headerShown: false,
             tabBarIcon: ({color, size=0}) => {
               return <Feather name="user" color={color} size={size}/>
             }

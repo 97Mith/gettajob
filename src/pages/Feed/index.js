@@ -3,6 +3,9 @@ import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../styles/FeedStyles';
 import { FontAwesome5, MaterialIcons, Entypo } from '@expo/vector-icons';
+import moment from 'moment';
+import 'moment/locale/pt-br'; // se quiser em português
+moment.locale('pt-br');
 
 const postsData = [
   {
@@ -17,6 +20,7 @@ const postsData = [
     comments: 1,
     caption: 'Preciso de ajuda urgente!',
     liked: false,
+    timestamp: '2025-04-18T12:10:00',
     requisition: {
       tag: 'Mecânico',
       description: 'Consertar amortecedor\nHonda CIVIC 2006',
@@ -34,6 +38,7 @@ const postsData = [
     comments: 11,
     caption: 'Agradeço a Deus por tudoooo ❤️',
     liked: false,
+    timestamp: '2025-04-18T12:10:00',
   },
   {
     id: '3',
@@ -46,6 +51,7 @@ const postsData = [
     comments: 11,
     caption: 'Hoje é dia de pintura e conserto! ✨🛠️',
     liked: false,
+    timestamp: '2025-04-18T12:10:00',
   },
   {
     id: '4',
@@ -58,6 +64,7 @@ const postsData = [
     comments: 1,
     caption: 'Mais uma graças a Deus!!!!',
     liked: false,
+    timestamp: '2025-04-18T12:10:00',
   },
   {
   id: '5',
@@ -70,6 +77,7 @@ const postsData = [
     comments: 11,
     caption: 'Hoje é dia de pintura e conserto! ✨🛠️',
     liked: false,
+    timestamp: '2025-04-18T12:10:00',
   },
   
 ];
@@ -105,10 +113,16 @@ export default function Feed() {
         <View style={styles.postContainer}>
         <View style={styles.userInfo}>
           <Image source={{ uri: item.user.avatar }} style={styles.avatar} />
-          <TouchableOpacity onPress={() => navigation.navigate('OthersProfile')}>
-            <Text style={styles.username}>{item.user.name}</Text>
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity onPress={() => navigation.navigate('OthersProfile')}>
+              <Text style={styles.username}>{item.user.name}</Text>
+            </TouchableOpacity>
+            <Text style={styles.postTime}>
+              {moment(item.timestamp).fromNow()} {/* Exemplo: "há 2 horas" */}
+            </Text>
+          </View>
         </View>
+
 
           
           <View style={styles.imageWrapper}>
