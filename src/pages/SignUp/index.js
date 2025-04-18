@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Alert } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import InputField from "../../components/InputField";
 import styles from "../../styles/signUpStyles";
 import { Picker } from "@react-native-picker/picker";
@@ -18,16 +19,31 @@ const professions = [
 ];
 
 export default function SignUp() {
+  const navigation = useNavigation();
+
   const [service1, setService1] = useState("-");
   const [service2, setService2] = useState("-");
   const [service3, setService3] = useState("-");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleRegister = () => {
+    if (password !== confirmPassword) {
+      Alert.alert("Erro", "As senhas não coincidem.");
+      return;
+    }
+
+    // Aqui você pode adicionar a lógica de cadastro
     Alert.alert("Cadastro realizado com sucesso!");
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      {/* Botão de Voltar */}
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+        <Text style={styles.backButtonText}>← Voltar</Text>
+      </TouchableOpacity>
+
       <Text style={styles.title}>Cadastro</Text>
 
       <InputField icon="user" placeholder="Nome Completo *" />
@@ -36,6 +52,24 @@ export default function SignUp() {
       <InputField icon="id-card" placeholder="CPF/CNPJ *" />
       <InputField icon="envelope" placeholder="E-mail *" />
       <InputField icon="phone" placeholder="Contato" />
+
+      {/* Senha */}
+      <InputField
+        icon="lock"
+        placeholder="Senha *"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
+
+      {/* Confirmação de Senha */}
+      <InputField
+        icon="lock"
+        placeholder="Confirmar Senha *"
+        secureTextEntry
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+      />
 
       {/* Serviço 1 */}
       <View style={styles.pickerContainer}>
