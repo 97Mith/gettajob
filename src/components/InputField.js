@@ -1,18 +1,29 @@
 import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { TextInputMask } from "react-native-masked-text";
 
-const InputField = ({ icon, placeholder, secureTextEntry, value, onChangeText }) => {
+const InputField = ({
+  icon,
+  placeholder,
+  secureTextEntry,
+  value,
+  onChangeText,
+  maskType,
+  options,
+}) => {
   return (
     <View style={styles.inputContainer}>
       <Icon name={icon} size={20} color="#fff" style={styles.icon} />
-      <TextInput
+      <TextInputMask
+        type={maskType || "custom"}
+        options={options}
+        value={value}
+        onChangeText={onChangeText}
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor="#aaa"
         secureTextEntry={secureTextEntry}
-        value={value}
-        onChangeText={onChangeText}
       />
     </View>
   );

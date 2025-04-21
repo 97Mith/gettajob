@@ -137,14 +137,70 @@ export default function SignUp() {
 
       <Text style={styles.title}>Cadastro</Text>
 
-      <InputField icon="user" placeholder="Nome Completo *" value={fullName} onChangeText={setFullName} />
-      <InputField icon="id-badge" placeholder="Nick Name *" value={nickName} onChangeText={setNickName} />
-      <InputField icon="map-marker" placeholder="Localização" value={location} onChangeText={setLocation} />
-      <InputField icon="id-card" placeholder="CPF/CNPJ *" value={cpfCnpj} onChangeText={setCpfCnpj} />
-      <InputField icon="envelope" placeholder="E-mail *" value={email} onChangeText={setEmail} />
-      <InputField icon="phone" placeholder="Contato" value={phoneNumber} onChangeText={setPhoneNumber} />
-      <InputField icon="lock" placeholder="Senha *" secureTextEntry value={password} onChangeText={setPassword} />
-      <InputField icon="lock" placeholder="Confirmar Senha *" secureTextEntry value={confirmPassword} onChangeText={setConfirmPassword} />
+      <InputField 
+        icon="user" 
+        placeholder="Nome Completo *" 
+        value={fullName} 
+        onChangeText={setFullName} 
+      />
+      
+      <InputField 
+        icon="id-badge" 
+        placeholder="Nick Name *" 
+        value={nickName} 
+        onChangeText={setNickName} 
+      />
+      
+      <InputField 
+        icon="map-marker" 
+        placeholder="Localização" 
+        value={location} 
+        onChangeText={setLocation} 
+      />
+      
+      
+      <InputField 
+        icon="id-card" 
+        placeholder="CPF/CNPJ *" 
+        value={cpfCnpj} 
+        onChangeText={setCpfCnpj} 
+        maskType="cpf-cnpj" options={{}}
+      />
+      
+      <InputField 
+        icon="envelope" 
+        placeholder="E-mail *" 
+        value={email} 
+        onChangeText={setEmail} 
+      />
+
+      <InputField
+          icon="phone"
+          placeholder="Contato"
+          value={phoneNumber}
+          onChangeText={setPhoneNumber}
+          maskType="cel-phone"
+          options={{
+            maskType: "BRL",
+            withDDD: true,
+            dddMask: "(99) "
+          }}
+        />
+      <InputField 
+        icon="lock" 
+        placeholder="Senha *" 
+        secureTextEntry 
+        value={password} 
+        onChangeText={setPassword} 
+      />
+
+      <InputField 
+        icon="lock" 
+        placeholder="Confirmar Senha *" 
+        secureTextEntry 
+        value={confirmPassword} 
+        onChangeText={setConfirmPassword} 
+      />
 
       {[service1, service2, service3].map((service, index) => (
         <View key={index} style={styles.pickerContainer}>
