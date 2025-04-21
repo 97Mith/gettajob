@@ -15,12 +15,12 @@ OK ~~10 - criar sininho de notificações~~
 OK ~~11 - criar tela de solicitação de serviço, incluir um pick com tipo de serviço, um campo para inserir a data e horário que está disponível para receber o serviço~~
 OK ~~12 - adicionar um botão de voltar e senha mais confirmação na tela cadastro 
 OK ~~13 - no Login, substituir a Label do título pela logo
-14 - Navegar para chat com requisitor do serviço ao clicar em "inscrever-se no serviço" deve mandar uma mensagem "Olá, fulano, me inscrevo para requisição do seu serviço" essa mensagem deve ter características diferentes, para o tomador aceitar ou não o serviço e adicionar a tela de req de serviço o nome de usuário em cima
-15 - criar lista de amigos
-16 - colocar função de compartilhar serviço com amigos
-17 - dar um marge top no projeto todo
-18 - Inserir horário nos posts
-19 - Inserir interações no post (comentários e likes)
-20 - abrir a foto do perfil ao clicar na foto quando estiver no perfil
-21 - criar notificações fake do sininho
-22 - clicar em compartilhar ele abre a tela de mensagens
+OK ~~14 - Navegar para chat com requisitor do serviço ao clicar em "inscrever-se no serviço" deve mandar uma mensagem "Olá, fulano, me inscrevo para requisição do seu serviço" essa mensagem deve ter características diferentes, para o tomador aceitar ou não o serviço e adicionar a tela de req de serviço o nome de usuário em cima
+OK ~~15 - criar lista de conexões
+OK ~~16 - colocar função de compartilhar serviço com amigos
+OK ~~17 - dar um marge top no projeto todo
+OK ~~18 - Inserir horário nos posts
+OK ~~19 - Inserir interações no post (comentários e likes)
+OK ~~20 - abrir a foto do perfil ao clicar na foto quando estiver no perfil
+21 - compartilhar perfil de alguém
+22 - ir para mensagens ao clicar em "Mensagem" no perfil de alguém

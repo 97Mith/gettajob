@@ -77,13 +77,13 @@ export default function OthersProfile() {
             </TouchableOpacity>
               <Text style={styles.nickname}>Carinha da Conseição</Text>
               <View style={{ flexDirection: 'row', gap: 6 }}>
-                              <Text style={styles.stats}>17 posts | 144 serviços |</Text>
-                              <TouchableOpacity onPress={() => navigation.navigate("Connections")}>
-                                <Text style={[styles.stats, { textDecorationLine: 'underline', color: '#c800ff' }]}>
-                                  6 conexões
-                                </Text>
-                              </TouchableOpacity>
-                            </View>
+                <Text style={styles.stats}>17 posts | 144 serviços |</Text>
+                <TouchableOpacity onPress={() => navigation.navigate("Connections")}>
+                  <Text style={[styles.stats, { textDecorationLine: 'underline', color: '#c800ff' }]}>
+                    6 conexões
+                  </Text>
+                </TouchableOpacity>
+              </View>
               
 
               <View style={styles.tagsContainer}>

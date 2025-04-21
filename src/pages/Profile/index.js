@@ -66,7 +66,7 @@ export default function Profile() {
       <Header />
 
       <FlatList
-        data={[{ key: "content" }]} // Apenas um item para renderizar o conteúdo
+        data={[{ key: "content" }]}
         renderItem={() => (
           <>
             <View style={styles.profileInfo}>

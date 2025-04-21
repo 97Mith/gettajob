@@ -5,6 +5,7 @@ import { SafeAreaView, StatusBar, Platform } from 'react-native';
 import "react-native-gesture-handler";
 
 export default function App(){
+  
   return(
     <SafeAreaView style={{
       flex: 1,
