@@ -2,7 +2,7 @@ import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const InputField = ({ icon, placeholder, secureTextEntry }) => {
+const InputField = ({ icon, placeholder, secureTextEntry, value, onChangeText }) => {
   return (
     <View style={styles.inputContainer}>
       <Icon name={icon} size={20} color="#fff" style={styles.icon} />
@@ -11,6 +11,8 @@ const InputField = ({ icon, placeholder, secureTextEntry }) => {
         placeholder={placeholder}
         placeholderTextColor="#aaa"
         secureTextEntry={secureTextEntry}
+        value={value}
+        onChangeText={onChangeText}
       />
     </View>
   );
