@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TextInput } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { TextInputMask } from "react-native-masked-text";
 
@@ -12,12 +12,14 @@ const InputField = ({
   maskType,
   options,
 }) => {
+  const InputComponent = maskType ? TextInputMask : TextInput;
+
   return (
     <View style={styles.inputContainer}>
       <Icon name={icon} size={20} color="#fff" style={styles.icon} />
-      <TextInputMask
-        type={maskType || "custom"}
-        options={options}
+      <InputComponent
+        type={maskType}
+        options={maskType === "custom" ? options : undefined}
         value={value}
         onChangeText={onChangeText}
         style={styles.input}

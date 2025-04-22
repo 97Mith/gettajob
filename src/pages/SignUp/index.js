@@ -164,7 +164,7 @@ export default function SignUp() {
         placeholder="CPF/CNPJ *" 
         value={cpfCnpj} 
         onChangeText={setCpfCnpj} 
-        maskType="cpf-cnpj" options={{}}
+        maskType="cpf" options={{}}
       />
       
       <InputField 
