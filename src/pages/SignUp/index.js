@@ -115,10 +115,25 @@ export default function SignUp() {
         cpfCnpj,
         email,
         passWord: password,
-        phoneNumber: phoneNumber,
+        phoneNumber,
         location,
-        jobs: [service1, service2, service3].filter((s) => s !== "-")
+        jobs: [service1, service2, service3].filter((s) => s !== "-"),
+        profilePicture: "",
+        professions: [],
+        posts: [],
+        connectionsList: [],
+        comentaries: [],
+        servicePosts: [],
+        starsAverage: 0,
+        daysFree: [],
+        chats: [],
+        feed: {
+          postsUser: [],
+          servicePostsUser: [],
+        },
+        notifications: []
       });
+      
 
       Alert.alert("Sucesso", "Cadastro realizado com sucesso!");
       navigation.goBack();
