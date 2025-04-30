@@ -18,6 +18,9 @@ import {
   query,
   where
 } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebaseConnection";
+
 
 const professions = [
   "-", "Carpinteiro", "Pintor", "Barbeiro", "Pedreiro", "Eletricista", "Encanador", "Mecânico",
@@ -89,32 +92,29 @@ export default function SignUp() {
 
   const handleRegister = async () => {
     if (!validateFields()) return;
-
+  
     try {
+      // Verifica se nickname já está em uso
       const usersRef = collection(db, "users");
-
       const nickQuery = query(usersRef, where("nickName", "==", nickName));
       const nickSnapshot = await getDocs(nickQuery);
-
+  
       if (!nickSnapshot.empty) {
         Alert.alert("Erro", "Nickname já está em uso.");
         return;
       }
-
-      const emailQuery = query(usersRef, where("email", "==", email));
-      const emailSnapshot = await getDocs(emailQuery);
-
-      if (!emailSnapshot.empty) {
-        Alert.alert("Erro", "E-mail já cadastrado.");
-        return;
-      }
-
+  
+      // Cria usuário com Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const { uid } = userCredential.user;
+  
+      // Salva dados adicionais no Firestore, usando o UID
       await addDoc(usersRef, {
+        uid, // opcional: salva também no doc
         nomeCompleto: fullName,
         nickName,
         cpfCnpj,
         email,
-        passWord: password,
         phoneNumber,
         location,
         jobs: [service1, service2, service3].filter((s) => s !== "-"),
@@ -133,16 +133,20 @@ export default function SignUp() {
         },
         notifications: []
       });
-      
-
+  
       Alert.alert("Sucesso", "Cadastro realizado com sucesso!");
       navigation.goBack();
-
+  
     } catch (error) {
       console.error("Erro ao cadastrar:", error);
-      Alert.alert("Erro", "Houve um problema ao cadastrar o usuário.");
+      if (error.code === "auth/email-already-in-use") {
+        Alert.alert("Erro", "E-mail já cadastrado.");
+      } else {
+        Alert.alert("Erro", "Houve um problema ao cadastrar o usuário.");
+      }
     }
   };
+  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

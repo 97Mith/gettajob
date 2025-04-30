@@ -5,14 +5,16 @@ import InputField from "../../components/InputField";
 import SocialButton from "../../components/SocialButton";
 import RememberMeCheck from "../../components/RememberMeCheckBox";
 import styles from "../../styles/loginStyles";
-import { db } from "../../firebaseConnection";
+import { auth, db } from "../../firebaseConnection";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 
 export default function Login() {
   const navigation = useNavigation();
   const logoOpacity = useRef(new Animated.Value(0)).current;
 
-  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
   const [passWord, setPassWord] = useState("");
 
   useEffect(() => {
@@ -24,24 +26,29 @@ export default function Login() {
   }, []);
 
   const handleLogin = async () => {
-    if (!nickname || !passWord) {
+    if (!email || !passWord) {
       Alert.alert("Atenção", "Preencha todos os campos.");
       return;
     }
-
+  
     try {
       const usersRef = collection(db, "users");
-      const q = query(usersRef, where("nickName", "==", nickname), where("passWord", "==", passWord));
-      const querySnapshot = await getDocs(q);
-
-      if (!querySnapshot.empty) {
+      const q = query(usersRef, where("email", "==", email));
+      const snapshot = await getDocs(q);
+  
+      if (!snapshot.empty) {
+        const userDoc = snapshot.docs[0];
+        const userEmail = userDoc.data().email;
+  
+        // Agora faz login real com Firebase Auth
+        await signInWithEmailAndPassword(auth, userEmail, passWord);
         navigation.navigate("Home");
       } else {
-        Alert.alert("Erro", "Nickname ou senha incorretos");
+        Alert.alert("Erro", "Usuário não encontrado");
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error);
-      Alert.alert("Erro", "Não foi possível acessar o banco de dados.");
+      Alert.alert("Erro", "Não foi possível fazer login");
     }
   };
 
@@ -54,9 +61,9 @@ export default function Login() {
 
       <InputField
         icon="user"
-        placeholder="Usuário"
-        value={nickname}
-        onChangeText={setNickname}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
       />
 
       <InputField
