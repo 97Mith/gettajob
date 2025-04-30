@@ -7,6 +7,7 @@ import FeedbackTab from "../Feedbacks";
 import GalleryTab from "../Gallery";
 import { useNavigation } from "@react-navigation/native";
 
+
 LocaleConfig.locales["pt-br"] = {
   monthNames: [
     "Janeiro",
