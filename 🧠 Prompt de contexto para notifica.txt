@@ -1,0 +1,55 @@
+🧠 Prompt de contexto para notificações push no app Getta Job (Expo + Firebase)
+Estou desenvolvendo um aplicativo chamado Getta Job, usando React Native com Expo e Firebase (Firestore e Auth). Configurei notificações push utilizando o sistema expo-notifications. Aqui está o que já está pronto:
+
+✅ Tecnologias
+Expo (React Native)
+
+Firebase Auth (login anônimo)
+
+Firestore (para dados do app)
+
+expo-notifications
+
+expo-device
+
+✅ O que já foi implementado
+Instalei os pacotes:
+
+bash
+Copiar
+Editar
+npx expo install expo-notifications expo-device
+No App.js:
+
+Configurei o NotificationHandler com Notifications.setNotificationHandler(...).
+
+Usei useEffect para:
+
+Pedir permissões de notificação;
+
+Obter o Expo Push Token;
+
+Criar os listeners:
+
+addNotificationReceivedListener
+
+addNotificationResponseReceivedListener
+
+Os tokens aparecem no console (console.log('Token de push:', token)).
+
+Já uso SafeAreaView, NavigationContainer e navegação via stackRoutes.
+
+O erro de módulo "expo-device" foi corrigido com npx expo install expo-device.
+
+🔜 Próximos passos possíveis:
+Salvar o token do usuário no Firestore (relacionado ao UID do Firebase);
+
+Criar um backend ou usar Firebase Cloud Functions para enviar notificações via expo-server-sdk;
+
+Disparar notificações quando:
+
+Alguém se inscrever num serviço;
+
+Alguém aceitar uma proposta;
+
+Um novo serviço compatível for publicado.

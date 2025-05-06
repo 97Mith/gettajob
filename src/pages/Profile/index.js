@@ -1,51 +1,18 @@
-import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, Image, TouchableOpacity, FlatList, ActivityIndicator } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import styles from "../../styles/ProfileStyles";
 import FeedbackTab from "../Feedbacks";
 import GalleryTab from "../Gallery";
 import { useNavigation } from "@react-navigation/native";
-
+import { auth, db } from "../../firebaseConnection";
+import { doc, getDoc } from "firebase/firestore";
 
 LocaleConfig.locales["pt-br"] = {
-  monthNames: [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-  ],
-  monthNamesShort: [
-    "Jan",
-    "Fev",
-    "Mar",
-    "Abr",
-    "Mai",
-    "Jun",
-    "Jul",
-    "Ago",
-    "Set",
-    "Out",
-    "Nov",
-    "Dez",
-  ],
-  dayNames: [
-    "Domingo",
-    "Segunda",
-    "Terça",
-    "Quarta",
-    "Quinta",
-    "Sexta",
-    "Sábado",
-  ],
+  monthNames: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+  monthNamesShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+  dayNames: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
   dayNamesShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
   today: "Hoje",
 };
@@ -53,14 +20,38 @@ LocaleConfig.defaultLocale = "pt-br";
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("gallery");
+  const [userData, setUserData] = useState(null);
   const navigation = useNavigation();
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          const userRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(userRef);
+          if (docSnap.exists()) {
+            setUserData(docSnap.data());
+          }
+        }
+      } catch (error) {
+        console.error("Erro ao carregar dados do usuário:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   const renderContent = () => {
-    if (activeTab === "gallery") return <GalleryTab />;
-    if (activeTab === "feedbacks") return <FeedbackTab />;
+    if (activeTab === "gallery") return <GalleryTab userId={auth.currentUser?.uid} />;
+    if (activeTab === "feedbacks") return <FeedbackTab userId={auth.currentUser?.uid} />;
     if (activeTab === "calendar") return <CalendarTab />;
     return null;
   };
+
+  if (!userData) {
+    return <ActivityIndicator size="large" style={{ marginTop: 50 }} />;
+  }
 
   return (
     <View style={styles.container}>
@@ -71,36 +62,40 @@ export default function Profile() {
         renderItem={() => (
           <>
             <View style={styles.profileInfo}>
-            <TouchableOpacity onPress={() => navigation.navigate("FullImage", { imageUri: Image.resolveAssetSource(require("../../assets/imgPerfil.png")).uri })}>
-              <Image
-                source={require("../../assets/imgPerfil.png")}
-                style={styles.avatar}
-              />
-            </TouchableOpacity>
-              <Text style={styles.nickname}>Nickname da Silva</Text>
+              <TouchableOpacity onPress={() => navigation.navigate("FullImage", { imageUri: userData.profilePicture || "https://i.pravatar.cc/150" })}>
+                <Image
+                  source={{ uri: userData.profilePicture || "https://i.pravatar.cc/150" }}
+                  style={styles.avatar}
+                />
+              </TouchableOpacity>
+
+              <Text style={styles.nickname}>{userData.nomeCompleto} ({userData.nickName})</Text>
+
               <View style={{ flexDirection: 'row', gap: 6 }}>
                 <Text style={styles.stats}>17 posts | 144 serviços |</Text>
                 <TouchableOpacity onPress={() => navigation.navigate("Connections")}>
                   <Text style={[styles.stats, { textDecorationLine: 'underline', color: '#c800ff' }]}>
-                    34 conexões
+                    {userData.connections?.length || 0} conexões
                   </Text>
                 </TouchableOpacity>
               </View>
 
               <View style={styles.tagsContainer}>
-                <Text style={styles.tag}>🔧 Carpinteiro</Text>
-                <Text style={styles.tag}>🔌 Eletricista</Text>
+                {userData.jobs?.map((job, index) => (
+                  <Text key={index} style={styles.tag}>🔧 {job}</Text>
+                ))}
               </View>
 
-              <Text style={styles.location}>📍 São José dos Pinhais</Text>
+              <Text style={styles.location}>📍 {userData.city} ({userData.state})</Text>
 
               <View style={styles.starsContainer}>
-                <FontAwesome name="star" color="#FFD700" size={16} />
-                <FontAwesome name="star" color="#FFD700" size={16} />
-                <FontAwesome name="star" color="#FFD700" size={16} />
-                <FontAwesome name="star" color="#FFD700" size={16} />
-                <FontAwesome name="star-half" color="#FFD700" size={16} />
-                <Text style={styles.ratingText}>4.7</Text>
+                {[...Array(Math.floor(userData.rating || 0))].map((_, i) => (
+                  <FontAwesome key={i} name="star" color="#FFD700" size={16} />
+                ))}
+                {(userData.rating % 1 !== 0) && (
+                  <FontAwesome name="star-half" color="#FFD700" size={16} />
+                )}
+                <Text style={styles.ratingText}>{userData.rating?.toFixed(1) || "N/A"}</Text>
               </View>
 
               <View style={styles.buttonsContainer}>
@@ -114,35 +109,13 @@ export default function Profile() {
             </View>
 
             <View style={styles.tabSelector}>
-              <TouchableOpacity
-                onPress={() => setActiveTab("gallery")}
-                style={
-                  activeTab === "gallery"
-                    ? styles.activeTab
-                    : styles.inactiveTab
-                }
-              >
+              <TouchableOpacity onPress={() => setActiveTab("gallery")} style={activeTab === "gallery" ? styles.activeTab : styles.inactiveTab}>
                 <FontAwesome name="image" size={24} />
               </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => setActiveTab("feedbacks")}
-                style={
-                  activeTab === "feedbacks"
-                    ? styles.activeTab
-                    : styles.inactiveTab
-                }
-              >
+              <TouchableOpacity onPress={() => setActiveTab("feedbacks")} style={activeTab === "feedbacks" ? styles.activeTab : styles.inactiveTab}>
                 <FontAwesome name="gavel" size={24} />
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => setActiveTab("calendar")}
-                style={
-                  activeTab === "calendar"
-                    ? styles.activeTab
-                    : styles.inactiveTab
-                }
-              >
+              <TouchableOpacity onPress={() => setActiveTab("calendar")} style={activeTab === "calendar" ? styles.activeTab : styles.inactiveTab}>
                 <FontAwesome name="calendar" size={24} />
               </TouchableOpacity>
             </View>

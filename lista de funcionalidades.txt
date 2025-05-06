@@ -1,0 +1,12 @@
+1 - criar a função deslogar
+2 - criar função de permanecer logado
+* 3 - Criar função de "conexão" com outro usuário, fazendo ele entrar como se fosse em sua "lista de amigos"
+* 4 - Carregar feed do usuário que logar com os posts de suas conexões
+* 5 - Criar Posts de requisição de serviços
+6 - Criar sistema de mensagens
+* 7 - criar sistema de avaliação e mostrar isso no perfil de usuário
+8 - carregar conexões quando clicar em "compartilhar perfil"
+9 - criar posts de imagem fictícios
+
+
+
